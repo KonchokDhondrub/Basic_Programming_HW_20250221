@@ -1,10 +1,7 @@
 //  Дан лист String. Необходимо определить, есть ли в данном листе повторяющиеся объекты.
 //  (данный метод можно реализовать в общем виде, для листа любых объектов)
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -45,18 +42,6 @@ public class Main {
 
         // Task 5
         System.out.println("\nTask 5");
-
-    }
-
-    // Task 3
-    public static Set<String> removeDuplicates(String listOfNames) {
-        String[] namesArray = listOfNames.split(",");
-        Set<String> uniqueNames = new HashSet<>();
-
-        for (String name : namesArray) {
-            uniqueNames.add(name);
-        }
-        return uniqueNames;
     }
 
     // Task 1
@@ -68,5 +53,11 @@ public class Main {
             }
         }
         return false;
+    }
+
+    // Task 3
+    public static Set<String> removeDuplicates(String listOfNames) {
+        String[] namesArray = listOfNames.split(",");
+        return new HashSet<>(Arrays.asList(namesArray));
     }
 }

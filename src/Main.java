@@ -80,10 +80,10 @@ public class Main {
     }
 
     // Task 5
-    public static Set<Person> findDuplicates(List<Person> personList) {
-        Set<Person> duplicates = new HashSet<>();
-        Set<Person> search = new HashSet<>();
-        for (Person person : personList) {
+    public static <T> Set<T> findDuplicates(List<T> personList) {
+        Set<T> duplicates = new HashSet<>();
+        Set<T> search = new HashSet<>();
+        for (T person : personList) {
             if (!search.add(person)) {
                 duplicates.add(person);
             }

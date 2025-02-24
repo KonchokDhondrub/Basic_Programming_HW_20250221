@@ -1,6 +1,3 @@
-//  Дан лист String. Необходимо определить, есть ли в данном листе повторяющиеся объекты.
-//  (данный метод можно реализовать в общем виде, для листа любых объектов)
-
 import java.util.*;
 
 public class Main {
@@ -9,17 +6,16 @@ public class Main {
         System.out.println("Task 1 - Get answer if List have duplicated objects");
         List<String> personList = List.of("Karl", "David", "Karl", "John", "David", "Erick");
         System.out.println("\t" + personList);
-        System.out.println("\tList has duplicates: " + duplicates(personList));
+        System.out.println("\tList has duplicates: " + isHaveDuplicates(personList));
 
         // Task 2
         System.out.println("\nTask 2 - Get List of not duplicated Persons from two Lists");
-        List<Person> team1 = List.of(new Person("Karl", 33), new Person("David", 24),
-                new Person("John", 30), new Person("Erick", 33), new Person("Elena", 45));
-        List<Person> team2 = List.of(new Person("Karl", 33), new Person("Robert", 39),
-                new Person("Jack", 22),   new Person("Simon", 44), new Person("Elena", 45));
+        List<Person> team1 = List.of(new Person("Karl", 33), new Person("David", 24));
+        List<Person> team2 = List.of(new Person("Karl", 33), new Person("Robert", 39));
+        List<Person> team3 = List.of(new Person("Eleonora", 32), new Person("Karl", 33));
 
-        System.out.println("\tList 1: " + team1 + "\n\tList 2: " + team2);
-        System.out.println("\tResult: " + allEmployees(team1, team2));
+        System.out.println("\tList 1: " + team1 + "\n\tList 2: " + team2 + "\n\tList 3: " + team3);
+        System.out.println("\tResult: " + allEmployeesWithoutDuplicates(team1, team2, team3));
 
         // Task 3
         System.out.println("\nTask 3 - Get List of not duplicated objects from String");
@@ -46,21 +42,24 @@ public class Main {
 
 
     // Task 1
-    public static <T> boolean duplicates(List<T> list) {
-        Set<T> duplicate = new HashSet<>();
-        for (T element : list) {
-            if (!duplicate.add(element)) {
-                return true;
-            }
-        }
-        return false;
+    public static <T> boolean isHaveDuplicates(List<T> list) {
+        if (list == null) return false;
+        Set<T> set = new HashSet<>(list);
+//        for (T element : list) {
+//            if (!set.add(element)) {
+//                return true;
+//            }
+//        }
+//        return false;
+        return set.size() != list.size();
     }
 
     // Task 2
-    public static <T> List<T> allEmployees(List<T> l1, List<T> l2){
-        Set<T> allEmployees = new HashSet<>();
-        allEmployees.addAll(l1);
-        allEmployees.addAll(l2);
+    public static <E> List<E> allEmployeesWithoutDuplicates(List<E> ... lists){
+        Set<E> allEmployees = new HashSet<>();
+        for (List<E> list : lists) {
+            allEmployees.addAll(list);
+        }
         return new ArrayList<>(allEmployees);
     }
 
@@ -73,17 +72,17 @@ public class Main {
     }
 
     // Task 4
-    public static <T> List<T> retailAll(List<T> l1, List<T> l2){
-        HashSet<T> setList1 = new HashSet<>(l1);
+    public static <E> List<E> retailAll(List<E> l1, List<E> l2){
+        HashSet<E> setList1 = new HashSet<>(l1);
         setList1.retainAll(l2);
         return new ArrayList<>(setList1);
     }
 
     // Task 5
-    public static <T> Set<T> findDuplicates(List<T> personList) {
-        Set<T> duplicates = new HashSet<>();
-        Set<T> search = new HashSet<>();
-        for (T person : personList) {
+    public static <E> Set<E> findDuplicates(List<E> personList) {
+        Set<E> duplicates = new HashSet<>();
+        Set<E> search = new HashSet<>();
+        for (E person : personList) {
             if (!search.add(person)) {
                 duplicates.add(person);
             }

@@ -56,6 +56,7 @@ public class Main {
 
     // Task 2
     public static <E> List<E> allEmployeesWithoutDuplicates(List<E> ... lists){
+        if (lists == null) return null;
         Set<E> allEmployees = new HashSet<>();
         for (List<E> list : lists) {
             allEmployees.addAll(list);
@@ -65,21 +66,28 @@ public class Main {
 
     // Task 3
     public static void removeDuplicates(String listOfNames) {
-        String[] namesArray = listOfNames.split(",");
-        for (String name : namesArray) {
-            System.out.println("\t" + name);
+        if (listOfNames == null) System.out.println("null");
+        else {
+            String[] namesArray = listOfNames.split(",");
+            for (String name : namesArray) {
+                System.out.println("\t" + name);
+            }
         }
     }
 
     // Task 4
-    public static <E> List<E> retailAll(List<E> l1, List<E> l2){
-        HashSet<E> setList1 = new HashSet<>(l1);
-        setList1.retainAll(l2);
-        return new ArrayList<>(setList1);
+    public static <E> List<E> retailAll(List<E> ... lists){
+        if (lists == null) return null;
+        HashSet<E> setList = new HashSet<>(lists[0]);
+        for (int i = 1; i < lists.length; i++) {
+            setList.retainAll(lists[i]);
+        }
+        return new ArrayList<>(setList);
     }
 
     // Task 5
     public static <E> Set<E> findDuplicates(List<E> personList) {
+        if (personList == null) return null;
         Set<E> duplicates = new HashSet<>();
         Set<E> search = new HashSet<>();
         for (E person : personList) {

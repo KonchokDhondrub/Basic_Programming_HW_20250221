@@ -21,7 +21,7 @@ public class Main {
         System.out.println("\nTask 3 - Get List of not duplicated objects from String");
         String listOfNames = "Jack,John,Nick,John";
         System.out.println("\tString: [" + listOfNames + ']');
-        removeDuplicates(listOfNames);
+        System.out.println("\t" + splittingAndRemoveDuplicates(listOfNames));
 
         // Task 4
         System.out.println("\nTask 4 - Get Set of duplicated Persons from both lists");
@@ -30,18 +30,18 @@ public class Main {
 
         System.out.println("\tList 1: " + list1);
         System.out.println("\tList 2: " + list2);
-        System.out.println("\tResult: " + retailAll(list1, list2));
+        System.out.println("\tResult: " + getSetOfDuplicatedPersons(list1, list2));
 
         // Task 5
         System.out.println("\nTask 5 - Get Set of duplicated Persons");
         List<Person> listOfPersons = List.of(new Person("Jack", 25), new Person("John", 35),
                 new Person("David", 40), new Person("Jack", 25), new Person("David", 40));
         System.out.println("\t" + listOfPersons);
-        System.out.println("\tResult: " + findDuplicates(listOfPersons));
+        System.out.println("\tResult: " + getSetOfDuplicatedPersonsFromList(listOfPersons));
     }
 
 
-    // Task 1
+    // Task 1 - Test OK
     public static <T> boolean isHaveDuplicates(List<T> list) {
         if (list == null) return false;
         Set<T> set = new HashSet<>(list);
@@ -54,7 +54,7 @@ public class Main {
         return set.size() != list.size();
     }
 
-    // Task 2
+    // Task 2 - Test OK
     public static <E> List<E> allEmployeesWithoutDuplicates(List<E> ... lists){
         if (lists == null) return null;
         Set<E> allEmployees = new HashSet<>();
@@ -64,29 +64,26 @@ public class Main {
         return new ArrayList<>(allEmployees);
     }
 
-    // Task 3
-    public static void removeDuplicates(String listOfNames) {
-        if (listOfNames == null) System.out.println("null");
-        else {
-            String[] namesArray = listOfNames.split(",");
-            for (String name : namesArray) {
-                System.out.println("\t" + name);
-            }
-        }
+    // Task 3 - Test OK
+    public static String splittingAndRemoveDuplicates(String listOfNames) {
+        if (listOfNames.isEmpty()) return "null";
+
+        Set<String> namesSet = new LinkedHashSet<>(Arrays.asList(listOfNames.split(",")));
+        return String.join(",", namesSet);
     }
 
-    // Task 4
-    public static <E> List<E> retailAll(List<E> ... lists){
+    // Task 4 - Test OK
+    public static <E> Set<E> getSetOfDuplicatedPersons(List<E> ... lists){
         if (lists == null) return null;
         HashSet<E> setList = new HashSet<>(lists[0]);
         for (int i = 1; i < lists.length; i++) {
             setList.retainAll(lists[i]);
         }
-        return new ArrayList<>(setList);
+        return setList;
     }
 
     // Task 5
-    public static <E> Set<E> findDuplicates(List<E> personList) {
+    public static <E> Set<E> getSetOfDuplicatedPersonsFromList(List<E> personList) {
         if (personList == null) return null;
         Set<E> duplicates = new HashSet<>();
         Set<E> search = new HashSet<>();

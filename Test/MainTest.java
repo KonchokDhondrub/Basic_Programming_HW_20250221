@@ -7,7 +7,7 @@ import java.util.*;
 
 class MainTest {
 
-    @Nested
+    @Nested // Task 1
     public class IsHaveDuplicates_existDuplicates_expectTrue {
 
         @Test
@@ -32,7 +32,7 @@ class MainTest {
         }
     }
 
-    @Nested
+    @Nested // Task 2
     public class allEmployeesWithoutDuplicates {
         @Test
         @DisplayName("(#2) Task 2: RemoveDuplicates: List with Persons")
@@ -61,7 +61,7 @@ class MainTest {
         }
     }
 
-    @Nested
+    @Nested // Task 3
     public class SplittingAndRemoveDuplicates {
         @Test
         @DisplayName("(#3) Task 3:  Splitting and remove duplicates")
@@ -103,10 +103,10 @@ class MainTest {
         }
     }
 
-    @Nested
+    @Nested // Task 4
     public class GetSetOfDuplicatedPersons{
         @Test
-        @DisplayName("(#4) Task 4: Get Set of duplicated Persons from both lists")
+        @DisplayName("(#4) Get Set of duplicated Persons from both lists")
         void getSetOfDuplicatedPersons() {
             List<Person> list1 = List.of(new Person("Alice", 30), new Person("Jack", 25), new Person("John", 35));
             List<Person> list2 = List.of(new Person("Jack", 25), new Person("John", 35), new Person("David", 40));
@@ -116,9 +116,27 @@ class MainTest {
 
             Assertions.assertEquals(expectedResult, actualResult);
         }
+        @Test
+        @DisplayName("(#4.1) Get Set without duplicates from both lists")
+        void getSetOfDuplicatedPersons_withoutDuplicates() {
+            List<Person> list1 = List.of(new Person("Alice", 30), new Person("Jack", 25), new Person("John", 35));
+            List<Person> list2 = List.of( new Person("David", 40));
+
+            Set<Person> expectedResult = new HashSet<>();
+            Set<Person> actualResult = Main.getSetOfDuplicatedPersons(list1, list2);
+
+            Assertions.assertEquals(expectedResult, actualResult);
+            Assertions.assertTrue(actualResult.isEmpty());
+        }
+
+        @Test
+        @DisplayName("(#4.2) List if null")
+        void getSetOfDuplicatedPersons_nullString() {
+            Assertions.assertNull(Main.getSetOfDuplicatedPersons(null), "Null test failed!");
+        }
     }
 
-    @Nested
+    @Nested // Task 5
     public class GetSetOfDuplicatedPersonsFromList{
         @Test
         @DisplayName("(#5) Task 5: Get Set of duplicated Persons")

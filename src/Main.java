@@ -72,8 +72,12 @@ public class Main {
 
     // Task 4 - Test OK
     public static <E> Set<E> getSetOfDuplicatedPersons(List<E> ... lists){
-        if (lists == null) return null;
-        HashSet<E> setList = new HashSet<>(lists[0]);
+        if (lists == null || lists.length == 0) return null;
+        for (List<E> list : lists) {
+            if (list == null) return new HashSet<>();
+        }
+
+        Set<E> setList = new HashSet<>(lists[0]);
         for (int i = 1; i < lists.length; i++) {
             setList.retainAll(lists[i]);
         }

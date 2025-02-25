@@ -18,14 +18,14 @@ class MainTest {
         }
 
         @Test
-        @DisplayName("(#2) When value don't have duplicates")
+        @DisplayName("(#1.1) When value don't have duplicates")
         void isHaveDuplicates_notExistDuplicates_expectFalse() {
             List<String> personList = List.of("Karl", "John", "David", "Erick");
             Assertions.assertFalse(Main.isHaveDuplicates(personList));
         }
 
         @Test
-        @DisplayName("(#3) Input null list")
+        @DisplayName("(#1.2) Input null list")
         void isHaveDuplicates_nullListInput_expectFalse() {
             List<String> personList = null;
             Assertions.assertFalse(Main.isHaveDuplicates(personList));
@@ -35,7 +35,7 @@ class MainTest {
     @Nested
     public class allEmployeesWithoutDuplicates {
         @Test
-        @DisplayName("(#4) Task 2: RemoveDuplicates: List with Persons")
+        @DisplayName("(#2) Task 2: RemoveDuplicates: List with Persons")
         void allEmployeesWithoutDuplicates() {
             List<Person> team1 = List.of(new Person("Karl", 33), new Person("David", 24));
             List<Person> team2 = List.of(new Person("Karl", 33), new Person("Robert", 39));
@@ -64,11 +64,40 @@ class MainTest {
     @Nested
     public class SplittingAndRemoveDuplicates {
         @Test
-        @DisplayName("(#5) Task 3:  Splitting and remove duplicates")
+        @DisplayName("(#3) Task 3:  Splitting and remove duplicates")
         void splittingAndRemoveDuplicates() {
             String listOfNames = "Jack,John,Nick,John";
-            String actualResult = Main.splittingAndRemoveDuplicates(listOfNames);
             String expectedResult = "Jack,John,Nick";
+
+            String actualResult = Main.splittingAndRemoveDuplicates(listOfNames);
+
+            Assertions.assertEquals(expectedResult, actualResult);
+        }
+        @Test
+        @DisplayName("(#3.1)  String without Duplicates")
+        void splittingAndRemoveDuplicates_withoutDuplicates() {
+            String listOfNames = "Jack,John,Nick";
+            String expectedResult = "Jack,John,Nick";
+
+            String actualResult = Main.splittingAndRemoveDuplicates(listOfNames);
+
+            Assertions.assertEquals(expectedResult, actualResult);
+        }
+
+        @Test
+        @DisplayName("(#3.2) String null")
+        void splittingAndRemoveDuplicates_nullString() {
+            Assertions.assertNull(Main.splittingAndRemoveDuplicates(null), "Null test failed!");
+        }
+
+
+        @Test
+        @DisplayName("(#3.2)  String with identical names")
+        void splittingAndRemoveDuplicates_identicalNames() {
+            String listOfNames = "Jack,Jack,Jack,Jack";
+            String expectedResult = "Jack";
+
+            String actualResult = Main.splittingAndRemoveDuplicates(listOfNames);
 
             Assertions.assertEquals(expectedResult, actualResult);
         }
@@ -77,7 +106,7 @@ class MainTest {
     @Nested
     public class GetSetOfDuplicatedPersons{
         @Test
-        @DisplayName("(#6) Task 4: Get Set of duplicated Persons from both lists")
+        @DisplayName("(#4) Task 4: Get Set of duplicated Persons from both lists")
         void getSetOfDuplicatedPersons() {
             List<Person> list1 = List.of(new Person("Alice", 30), new Person("Jack", 25), new Person("John", 35));
             List<Person> list2 = List.of(new Person("Jack", 25), new Person("John", 35), new Person("David", 40));
@@ -92,7 +121,7 @@ class MainTest {
     @Nested
     public class GetSetOfDuplicatedPersonsFromList{
         @Test
-        @DisplayName("(#7) Task 5: Get Set of duplicated Persons")
+        @DisplayName("(#5) Task 5: Get Set of duplicated Persons")
         void getSetOfDuplicatedPersonsFromList(){
             List<Person> listOfPersons = List.of(new Person("Jack", 25), new Person("John", 35),
                     new Person("David", 40), new Person("Jack", 25), new Person("David", 40));

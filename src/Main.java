@@ -66,10 +66,8 @@ public class Main {
 
     // Task 3 - Test OK
     public static String splittingAndRemoveDuplicates(String listOfNames) {
-        if (listOfNames.isEmpty()) return "null";
-
-        Set<String> namesSet = new LinkedHashSet<>(Arrays.asList(listOfNames.split(",")));
-        return String.join(",", namesSet);
+        if (listOfNames == null || listOfNames.isBlank()) return null;
+        return String.join(",", new LinkedHashSet<>(Arrays.asList(listOfNames.split(","))));
     }
 
     // Task 4 - Test OK
@@ -82,7 +80,7 @@ public class Main {
         return setList;
     }
 
-    // Task 5
+    // Task 5 - Test OK
     public static <E> Set<E> getSetOfDuplicatedPersonsFromList(List<E> personList) {
         if (personList == null) return null;
         Set<E> duplicates = new HashSet<>();
